@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This buid script is used to bundle the Loan Calculator Project-->
+<project name="LoanCalculator" default="build" basedir=".">
+	<property name="application.name" value="LoanCalculatorCore" />
+	<property name="version" value="1.0.0" />
+	<property name="src.home" value="${basedir}/src/main/java" />
+	<property name="test.home" value="${basedir}/src/main/test" />
+	<property name="build.home" value="${basedir}/build" />
+	<property name="build.classes.dir" value="${build.home}/classes" />
+	<property name="test.classes.dir" value="${build.classes.dir}/test" />
+	<property name="junit.testresults.dir" value="${build.home}/junit/results" />
+	<property name="dist.home" value="${basedir}/dist" />
+	<property name="application.lib.home" value="${basedir}/lib" />
+
+	<path id="compile.classpath">
+		<!--  Third parties Libraries  -->
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<tstamp>
+		<format property="TODAY" pattern="yyyyMMddHHmm" locale="en,US" />
+	</tstamp>
+
+	<target name="clean" description="remove the previous build">
+		<delete dir="${build.home}" />
+		<delete dir="${dist.home}" />
+	</target>
+
+	<target name="compile" description="compile the source files">
+		<mkdir dir="${build.home}/classes" />
+		<!--  compiling	  -->
+		<javac srcdir="${src.home}" destdir="${build.home}/classes" debug="true">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<!--  compile the junit test cases and place the .class files in respective target directory  -->
+	<target name="compile-test" description="Compiles the tests source code">
+		<mkdir dir="${test.classes.dir}" />
+		<javac debug="true" srcdir="${test.home}" destdir="${build.classes.dir}/test">
+			<classpath refid="compile.classpath" />
+			<classpath location="${build.classes.dir}" />
+		</javac>
+	</target>
+
+	<!--  JUnit test cases running	  -->
+	<target name="run-test">
+		<delete dir="${junit.testresults.dir}" quiet="true" includeemptydirs="true" />
+		<mkdir dir="${junit.testresults.dir}" />
+		<!--  Run junit on all test classes	  -->
+		<junit printsummary="off" fork="on" forkmode="perBatch">
+			<classpath>
+				<pathelement location="${build.classes.dir}" />
+				<pathelement location="${test.classes.dir}" />
+				<path refid="compile.classpath" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${junit.testresults.dir}" failureproperty="test.failure">
+				<!--  a bit care required here for including and excluding file  -->
+				<fileset dir="${test.classes.dir}" includes="**/*Test*.class" excludes="**/*$*.class" />
+			</batchtest>
+		</junit>
+		<junitreport todir="${junit.testresults.dir}">
+			<fileset dir="${junit.testresults.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${junit.testresults.dir}" />
+		</junitreport>
+		<antcall target="fail-if-junit-failed" inheritall="true" />
+	</target>
+
+	<!--  make the build fail if any test cases failed  -->
+	<target name="fail-if-junit-failed" if="test.failure">
+		<fail message="One or more unit tests failed. See build/results for details." />
+	</target>
+
+	<target name="prepare" description="prepare some inital process before build">
+		<!--  create directories 
+	  -->
+		<mkdir dir="${build.home}" />
+		<mkdir dir="${dist.home}" />
+		<mkdir dir="${build.home}/META-INF" />
+		<!--  making third parties lib directory  -->
+		<!--  mkdir dir="${build.home}/lib" /   -->
+		<!--  copy third party jar files from application home	  -->
+		<!--  copy todir="${build.home}/lib">
+				<fileset dir="${application.lib.home}" includes="*.jar" />
+			</copy 	  -->
+	</target>
+	
+	<target name="dist" description="create binary distribution file">
+		<!--  creating manifest file  -->
+		<!-- <manifest file="${build.home}/META-INF/MANIFEST.MF">
+			<attribute name="Class-Path" value="lib/commons-logging.jar,lib/commons-net.jar,lib/httpclient.jar,lib/httpcore.jar,lib/jsch.jar" />
+		</manifest> -->
+		<jar destfile="${dist.home}/${application.name}_${version}.jar">
+			<fileset dir="${build.classes.dir}">		
+				<exclude name="test/**" />
+				<exclude name="**/*Test*" />
+			</fileset>			
+		</jar>
+	</target>
+	
+	<target name="build" description="build the application" depends="clean,prepare,compile,compile-test,dist">
+		<echo>Please collect the jar from dist folder.</echo>
+	</target>
+
+</project>
+
