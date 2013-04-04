@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="LoanCalculatorService" basedir="." default="build">
+
+	<property name="src.home" value="${basedir}/src/main/java" />
+	<property name="test.home" value="${basedir}/src/main/test" />
+	<property name="dev.template.dir" value="${basedir}/dev/template" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="build.work.dir" value="${build.dir}/work" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="gen.src.dir" value="${build.dir}/ws-gen-src" />
+	<property name="build.web.home" value="${build.work.dir}/WEB-INF" />
+	<property name="build.lib.dir" value="${build.web.home}/lib" />
+	<property name="compiled.classes.dir" value="${build.web.home}/classes" />
+	<property name="test.classes.dir" value="${compiled.classes.dir}/test" />
+
+	<target name="build" depends="clean,prepare,compile,service-gen,package">
+		<echo message=" --> War has been bundled into dist folder" />
+	</target>
+
+	<path id="jaxws.classpath">
+		<fileset dir="${basedir}/dev/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>	
+
+	<path id="compile.classpath">
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile" description="compile the source files">
+		<mkdir dir="${compiled.classes.dir}" />
+		<!--  compiling	  -->
+		<javac srcdir="${src.home}" destdir="${compiled.classes.dir}" debug="true">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<!--  compile the junit test cases and place the .class files in respective target directory  -->
+	<target name="compile-test" description="Compiles the tests source code">
+		<mkdir dir="${test.classes.dir}" />
+		<javac debug="true" srcdir="${test.home}" destdir="${test.classes.dir}">
+			<classpath refid="compile.classpath" />			
+			<classpath location="${compiled.classes.dir}" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete verbose="true" failonerror="false" includeemptydirs="true">
+			<fileset dir="${build.dir}">
+			</fileset>
+			<fileset dir="${dist.dir}">
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.work.dir}" />
+		<mkdir dir="${build.web.home}" />
+		<mkdir dir="${build.lib.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${gen.src.dir}" />
+		<!-- copying jaxws deployment description and web deployment descriptor -->
+		<copy todir="${build.web.home}">
+			<fileset dir="${dev.template.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+
+		<!-- copying libraries -->
+		<copy todir="${build.lib.dir}">
+			<fileset dir="${basedir}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${basedir}/dev/lib">
+				<include name="*.jar" />
+			</fileset>			
+		</copy>
+	</target>
+
+	<taskdef name="wsgen" classname="com.sun.tools.ws.ant.WsGen">
+		<classpath>
+			<path refid="jaxws.classpath" />
+		</classpath>
+	</taskdef>
+
+	<target name="service-gen">
+		<wsgen xendorsed="true" resourcedestdir="${compiled.classes.dir}" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" servicename="{http://temenos.com}LoanCalculator" sei="com.temenos.webservices.loan.service.LoanCalculatorService" keep="true" verbose="true">
+			<classpath location="${compiled.classes.dir}">
+				<path refid="compile.classpath">
+				</path>
+			</classpath>
+		</wsgen>
+	</target>
+
+	<target name="package">
+		<jar destfile="${dist.dir}/${ant.project.name}.war">
+			<fileset dir="${build.work.dir}">
+				<exclude name="**/test/**" />
+				<exclude name="test/**" />
+			</fileset>
+		</jar>
+	</target>
+
+</project>
