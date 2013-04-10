@@ -12,25 +12,25 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "calculateLoanResponse", namespace = "http://temenos.com")
 public class CalculateLoanResponse {
 
-    @XmlElement(name = "return", namespace = "")
-    private com.temenos.services.loan.core.LoanMetaData _return;
+    @XmlElement(name = "LoanDetails", namespace = "")
+    private com.temenos.services.loan.core.LoanMetaData loanDetails;
 
     /**
      * 
      * @return
      *     returns LoanMetaData
      */
-    public com.temenos.services.loan.core.LoanMetaData getReturn() {
-        return this._return;
+    public com.temenos.services.loan.core.LoanMetaData getLoanDetails() {
+        return this.loanDetails;
     }
 
     /**
      * 
-     * @param _return
-     *     the value for the _return property
+     * @param loanDetails
+     *     the value for the loanDetails property
      */
-    public void setReturn(com.temenos.services.loan.core.LoanMetaData _return) {
-        this._return = _return;
+    public void setLoanDetails(com.temenos.services.loan.core.LoanMetaData loanDetails) {
+        this.loanDetails = loanDetails;
     }
 
 }

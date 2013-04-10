@@ -1,6 +1,8 @@
 package com.temenos.webservices.loan.service;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import com.temenos.services.loan.core.DurationPeriods;
@@ -15,12 +17,16 @@ import com.temenos.services.loan.core.LoanType;
  * @author sbharathraja
  * 
  */
-@WebService(targetNamespace = "http://temenos.com", name = "LoanCalculator")
-public class LoanCalculatorService {
+@WebService(targetNamespace = "http://temenos.com")
+public class LoanCalculator {
 
 	@WebMethod
-	public LoanMetaData calculateLoan(double loanAmount, LoanType loanType,
-			DurationPeriods durationPeriod) throws LoanCalculatorException {
+	@WebResult(name = "LoanDetails")
+	public LoanMetaData calculateLoan(
+			@WebParam(name = "loanAmount") double loanAmount,
+			@WebParam(name = "loanType") LoanType loanType,
+			@WebParam(name = "durationPeriod") DurationPeriods durationPeriod)
+			throws LoanCalculatorException {
 		return LoanCalculatorFactory.createLoanCalculator().calculateLoan(
 				loanAmount, loanType, durationPeriod);
 	}

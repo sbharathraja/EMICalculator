@@ -10,35 +10,35 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "calculateLoan", namespace = "http://temenos.com")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "calculateLoan", namespace = "http://temenos.com", propOrder = {
-    "arg0",
-    "arg1",
-    "arg2"
+    "loanAmount",
+    "loanType",
+    "durationPeriod"
 })
 public class CalculateLoan {
 
-    @XmlElement(name = "arg0", namespace = "")
-    private double arg0;
-    @XmlElement(name = "arg1", namespace = "")
-    private com.temenos.services.loan.core.LoanType arg1;
-    @XmlElement(name = "arg2", namespace = "")
-    private com.temenos.services.loan.core.DurationPeriods arg2;
+    @XmlElement(name = "loanAmount", namespace = "")
+    private double loanAmount;
+    @XmlElement(name = "loanType", namespace = "")
+    private com.temenos.services.loan.core.LoanType loanType;
+    @XmlElement(name = "durationPeriod", namespace = "")
+    private com.temenos.services.loan.core.DurationPeriods durationPeriod;
 
     /**
      * 
      * @return
      *     returns double
      */
-    public double getArg0() {
-        return this.arg0;
+    public double getLoanAmount() {
+        return this.loanAmount;
     }
 
     /**
      * 
-     * @param arg0
-     *     the value for the arg0 property
+     * @param loanAmount
+     *     the value for the loanAmount property
      */
-    public void setArg0(double arg0) {
-        this.arg0 = arg0;
+    public void setLoanAmount(double loanAmount) {
+        this.loanAmount = loanAmount;
     }
 
     /**
@@ -46,17 +46,17 @@ public class CalculateLoan {
      * @return
      *     returns LoanType
      */
-    public com.temenos.services.loan.core.LoanType getArg1() {
-        return this.arg1;
+    public com.temenos.services.loan.core.LoanType getLoanType() {
+        return this.loanType;
     }
 
     /**
      * 
-     * @param arg1
-     *     the value for the arg1 property
+     * @param loanType
+     *     the value for the loanType property
      */
-    public void setArg1(com.temenos.services.loan.core.LoanType arg1) {
-        this.arg1 = arg1;
+    public void setLoanType(com.temenos.services.loan.core.LoanType loanType) {
+        this.loanType = loanType;
     }
 
     /**
@@ -64,17 +64,17 @@ public class CalculateLoan {
      * @return
      *     returns DurationPeriods
      */
-    public com.temenos.services.loan.core.DurationPeriods getArg2() {
-        return this.arg2;
+    public com.temenos.services.loan.core.DurationPeriods getDurationPeriod() {
+        return this.durationPeriod;
     }
 
     /**
      * 
-     * @param arg2
-     *     the value for the arg2 property
+     * @param durationPeriod
+     *     the value for the durationPeriod property
      */
-    public void setArg2(com.temenos.services.loan.core.DurationPeriods arg2) {
-        this.arg2 = arg2;
+    public void setDurationPeriod(com.temenos.services.loan.core.DurationPeriods durationPeriod) {
+        this.durationPeriod = durationPeriod;
     }
 
 }

@@ -88,7 +88,7 @@
 	</taskdef>
 
 	<target name="service-gen">
-		<wsgen xendorsed="true" resourcedestdir="${compiled.classes.dir}" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" servicename="{http://temenos.com}LoanCalculator" sei="com.temenos.webservices.loan.service.LoanCalculatorService" keep="true" verbose="true">
+		<wsgen xendorsed="true" resourcedestdir="${build.web.home}" genwsdl="true" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" sei="com.temenos.webservices.loan.service.LoanCalculator" keep="true" verbose="true">
 			<classpath location="${compiled.classes.dir}">
 				<path refid="compile.classpath">
 				</path>
