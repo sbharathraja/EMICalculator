@@ -7,8 +7,8 @@ import javax.jws.WebService;
 
 import com.temenos.services.loan.core.DurationPeriods;
 import com.temenos.services.loan.core.EMIDetails;
-import com.temenos.services.loan.core.LoanCalculatorFactory;
 import com.temenos.services.loan.core.LoanEMICalculatorException;
+import com.temenos.services.loan.core.LoanEMICalculatorFactory;
 import com.temenos.services.loan.core.LoanType;
 
 /**
@@ -27,7 +27,7 @@ public class EMICalculator {
 			@WebParam(name = "loanType") LoanType loanType,
 			@WebParam(name = "durationPeriod") DurationPeriods durationPeriod)
 			throws LoanEMICalculatorException {
-		return LoanCalculatorFactory.createLoanCalculator().calculateEMI(
+		return LoanEMICalculatorFactory.createLoanEMICalculator().calculateEMI(
 				loanAmount, loanType, durationPeriod);
 	}
 
