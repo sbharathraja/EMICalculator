@@ -9,26 +9,26 @@ import com.temenos.services.loan.core.interest.InterestRateCalculator;
  * @author BharathRaja
  * 
  */
-class LoanCalculator implements Calculator {
+class LoanCalculator implements EMICalculator {
 
 	private InterestRateCalculator interestRateCalculator;
 
 	@Override
-	public LoanMetaData calculateLoan(double creditAmount, LoanType loanType,
-			DurationPeriods duration) throws LoanCalculatorException {
+	public EMIDetails calculateEMI(double loanAmount, LoanType loanType,
+			DurationPeriods duration) throws LoanEMICalculatorException {
 		if (duration == null) {
-			throw new LoanCalculatorException("Invalid duration!");
+			throw new LoanEMICalculatorException("Invalid duration!");
 		}
 		interestRateCalculator = new InterestRateCalculator();
 		InterestRate interestRate = interestRateCalculator
-				.calculateRate(creditAmount);
-		double totalInterestAmount = calculateTotalInterestAmount(creditAmount,
+				.calculateRate(loanAmount);
+		double totalInterestAmount = calculateTotalInterestAmount(loanAmount,
 				interestRate, duration);
 		double amountToBePaidPerMonth = calculateAmountToBePaidPerMonth(
-				creditAmount, totalInterestAmount, duration);
-		LoanMetaData loanData = new LoanMetaData(creditAmount, loanType,
+				loanAmount, totalInterestAmount, duration);
+		EMIDetails loanData = new EMIDetails(loanAmount, loanType,
 				duration);
-		loanData.setAmountToBePaidPerMonth(amountToBePaidPerMonth);
+		loanData.setEmi(amountToBePaidPerMonth);
 		loanData.setInterestRate(interestRate);
 		loanData.setTotalInterestAmount(totalInterestAmount);
 

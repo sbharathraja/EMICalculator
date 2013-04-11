@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class LoanCalculatorTest {
 
-	private Calculator loanCalculator;
+	private EMICalculator loanCalculator;
 
 	@Before
 	public void setUp() throws Exception {
@@ -15,17 +15,17 @@ public class LoanCalculatorTest {
 	}
 
 	@Test
-	public void testCalculateLoan() throws LoanCalculatorException {
+	public void testCalculateLoan() throws LoanEMICalculatorException {
 		try {
-			loanCalculator.calculateLoan(0, null, null);
+			loanCalculator.calculateEMI(0, null, null);
 		} catch (Exception e) {
-			assertTrue(e instanceof LoanCalculatorException);
+			assertTrue(e instanceof LoanEMICalculatorException);
 		}
 
-		LoanMetaData loanMetaData=loanCalculator.calculateLoan(100000, LoanType.PERSONAL,
+		EMIDetails loanMetaData=loanCalculator.calculateEMI(100000, LoanType.PERSONAL,
 				DurationPeriods._3MONTHS);
 		assertTrue(loanMetaData.getInterestRate().equals("15%"));
 		assertTrue(loanMetaData.getTotalInterestAmount()==3750);
-		assertTrue(loanMetaData.getAmountToBePaidPerMonth()==34583.333333333336);
+		assertTrue(loanMetaData.getEmi()==34583.333333333336);
 	}	
 }

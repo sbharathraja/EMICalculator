@@ -10,7 +10,7 @@ import com.temenos.services.loan.core.interest.InterestRate;
  * @author BharathRaja
  * 
  */
-public class LoanMetaData implements Serializable{
+public class EMIDetails implements Serializable{
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class LoanMetaData implements Serializable{
 
 	private InterestRate interestRate;
 
-	private double amountToBePaidPerMonth;
+	private double emi;
 
 	/**
 	 * Creates the loan meta data with given details.
@@ -36,14 +36,14 @@ public class LoanMetaData implements Serializable{
 	 * @param loanType
 	 * @param durationPeriod
 	 */
-	public LoanMetaData(double loanAmount, LoanType loanType,
+	public EMIDetails(double loanAmount, LoanType loanType,
 			DurationPeriods durationPeriod) {
 		this.loanAmount = loanAmount;
 		this.setLoanType(loanType);
 		this.setDurationPeriod(durationPeriod);
 	}
 	
-	public LoanMetaData(){
+	public EMIDetails(){
 		
 	}
 
@@ -104,12 +104,12 @@ public class LoanMetaData implements Serializable{
 		this.interestRate = interestRate;
 	}
 
-	public double getAmountToBePaidPerMonth() {
-		return amountToBePaidPerMonth;
+	public double getEmi() {
+		return emi;
 	}
 
-	public void setAmountToBePaidPerMonth(double amountToBePaidPerMonth) {
-		this.amountToBePaidPerMonth = amountToBePaidPerMonth;
+	public void setEmi(double amountToBePaidPerMonth) {
+		this.emi = amountToBePaidPerMonth;
 	}
 
 }

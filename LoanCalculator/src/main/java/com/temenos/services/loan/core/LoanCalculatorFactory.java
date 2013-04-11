@@ -10,7 +10,7 @@ package com.temenos.services.loan.core;
 public class LoanCalculatorFactory {
 	
 	
-	public static Calculator createLoanCalculator(){
+	public static EMICalculator createLoanCalculator(){
 		return new LoanCalculator();
 	}
 

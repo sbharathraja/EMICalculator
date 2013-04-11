@@ -1,6 +1,6 @@
 package com.temenos.services.loan.core.interest;
 
-import com.temenos.services.loan.core.LoanCalculatorException;
+import com.temenos.services.loan.core.LoanEMICalculatorException;
 
 /**
  * Act as a business logic to calculate the interest rate.
@@ -16,12 +16,12 @@ public class InterestRateCalculator {
 	 * 
 	 * @param loanAmount
 	 * @return
-	 * @throws LoanCalculatorException
+	 * @throws LoanEMICalculatorException
 	 */
 	public InterestRate calculateRate(double loanAmount)
-			throws LoanCalculatorException {
+			throws LoanEMICalculatorException {
 		if (loanAmount <= 0) {
-			throw new LoanCalculatorException(
+			throw new LoanEMICalculatorException(
 					"Invalid input to calculate the interest rate...");
 		}
 		if (loanAmount >= 100000 && loanAmount <= 500000) {

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.temenos.services.loan.core.LoanCalculatorException;
+import com.temenos.services.loan.core.LoanEMICalculatorException;
 
 public class InterestRateCalculatorTest {
 
@@ -17,11 +17,11 @@ public class InterestRateCalculatorTest {
 	}
 
 	@Test
-	public void testCalculateRate() throws LoanCalculatorException {
+	public void testCalculateRate() throws LoanEMICalculatorException {
 		try {
 			calculator.calculateRate(0);
 		} catch (Exception e) {
-			assertTrue(e instanceof LoanCalculatorException);
+			assertTrue(e instanceof LoanEMICalculatorException);
 		}
 
 		assertTrue(calculator.calculateRate(1000).equals(InterestRate._8POINT5));

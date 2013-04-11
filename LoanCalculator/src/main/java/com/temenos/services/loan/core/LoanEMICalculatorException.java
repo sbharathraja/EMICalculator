@@ -6,26 +6,26 @@ package com.temenos.services.loan.core;
  * @author BharathRaja
  * 
  */
-public class LoanCalculatorException extends Exception {
+public class LoanEMICalculatorException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public LoanCalculatorException() {
+	public LoanEMICalculatorException() {
 		super();
 	}
 
-	public LoanCalculatorException(String message) {
+	public LoanEMICalculatorException(String message) {
 		super(message);
 	}
 
-	public LoanCalculatorException(Throwable cause) {
+	public LoanEMICalculatorException(Throwable cause) {
 		super(cause);
 	}
 
-	public LoanCalculatorException(String message, Throwable cause) {
+	public LoanEMICalculatorException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
