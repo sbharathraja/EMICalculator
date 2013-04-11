@@ -7,11 +7,11 @@ package com.temenos.services.loan.core;
  * @author sbharathraja
  * 
  */
-public class LoanCalculatorFactory {
+public class LoanEMICalculatorFactory {
 	
 	
-	public static EMICalculator createLoanCalculator(){
-		return new LoanCalculator();
+	public static EMICalculator createLoanEMICalculator(){
+		return new LoanEMICalculator();
 	}
 
 }

@@ -9,7 +9,7 @@ import com.temenos.services.loan.core.interest.InterestRateCalculator;
  * @author BharathRaja
  * 
  */
-class LoanCalculator implements EMICalculator {
+class LoanEMICalculator implements EMICalculator {
 
 	private InterestRateCalculator interestRateCalculator;
 

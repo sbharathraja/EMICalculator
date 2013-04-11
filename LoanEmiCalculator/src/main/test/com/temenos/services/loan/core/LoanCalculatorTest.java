@@ -11,7 +11,7 @@ public class LoanCalculatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		loanCalculator = new LoanCalculator();
+		loanCalculator = new LoanEMICalculator();
 	}
 
 	@Test
