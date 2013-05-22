@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="EMICalculatorService" basedir="." default="build">
-
+	
+	<property name="application.name" value="LoanCalculatorService" />
+    
 	<property name="src.home" value="${basedir}/src/main/java" />
 	<property name="test.home" value="${basedir}/src/main/test" />
 	<property name="dev.template.dir" value="${basedir}/dev/template" />
@@ -88,7 +90,7 @@
 	</taskdef>
 
 	<target name="service-gen">
-		<wsgen xendorsed="true" resourcedestdir="${build.web.home}" genwsdl="true" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" sei="com.temenos.webservices.loan.service.EMICalculator" keep="true" verbose="true">
+		<wsgen xendorsed="true" fork="true" resourcedestdir="${build.web.home}" genwsdl="true" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" sei="com.sbr.webservices.loan.service.LoanCalculator" keep="true" verbose="true">
 			<classpath location="${compiled.classes.dir}">
 				<path refid="compile.classpath">
 				</path>
@@ -97,7 +99,7 @@
 	</target>
 
 	<target name="package">
-		<jar destfile="${dist.dir}/${ant.project.name}.war">
+		<jar destfile="${dist.dir}/${application.name}.war">
 			<fileset dir="${build.work.dir}">
 				<exclude name="**/test/**" />
 				<exclude name="test/**" />
