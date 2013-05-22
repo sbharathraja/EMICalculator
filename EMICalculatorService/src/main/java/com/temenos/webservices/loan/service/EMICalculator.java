@@ -22,7 +22,7 @@ public class EMICalculator {
 
 	@WebMethod
 	@WebResult(name = "EMIDetails")
-	public EMIDetails calculateEmi(
+	public EMIDetails calculateEMI(
 			@WebParam(name = "loanAmount") double loanAmount,
 			@WebParam(name = "loanType") LoanType loanType,
 			@WebParam(name = "durationPeriod") DurationPeriods durationPeriod)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- This buid script is used to bundle the Loan Calculator Project-->
-<project name="LoanEMICalculator" default="build" basedir=".">
-	<property name="application.name" value="LoanEmiCalculatorCore" />
+<project name="EMICalculatorCore" default="build" basedir=".">
+	<property name="application.name" value="EMICalculatorCore" />
 	<property name="version" value="1.0.0" />
 	<property name="src.home" value="${basedir}/src/main/java" />
 	<property name="test.home" value="${basedir}/src/main/test" />

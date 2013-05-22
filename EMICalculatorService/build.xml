@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="LoanCalculatorService" basedir="." default="build">
+<project name="EMICalculatorService" basedir="." default="build">
 
 	<property name="src.home" value="${basedir}/src/main/java" />
 	<property name="test.home" value="${basedir}/src/main/test" />
@@ -88,7 +88,7 @@
 	</taskdef>
 
 	<target name="service-gen">
-		<wsgen xendorsed="true" resourcedestdir="${build.web.home}" genwsdl="true" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" sei="com.temenos.webservices.loan.service.LoanCalculator" keep="true" verbose="true">
+		<wsgen xendorsed="true" resourcedestdir="${build.web.home}" genwsdl="true" destdir="${compiled.classes.dir}" sourcedestdir="${gen.src.dir}" sei="com.temenos.webservices.loan.service.EMICalculator" keep="true" verbose="true">
 			<classpath location="${compiled.classes.dir}">
 				<path refid="compile.classpath">
 				</path>

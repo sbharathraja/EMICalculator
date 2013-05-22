@@ -13,13 +13,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         </listener-class>
     </listener>
     <servlet>
-        <servlet-name>LoanCalculatorService</servlet-name>
+        <servlet-name>EMICalculatorService</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoanCalculatorService</servlet-name>
+        <servlet-name>EMICalculatorService</servlet-name>
         <url-pattern>/service</url-pattern>
     </servlet-mapping>
     <session-config>
