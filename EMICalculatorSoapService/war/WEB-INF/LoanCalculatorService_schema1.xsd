@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://loan.services.sbr.com" xmlns:tns="http://loan.services.sbr.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="LoanCalculatorFault" type="tns:LoanCalculatorFault"/>
+
+  <xs:element name="calculateDuration" nillable="true" type="tns:calculateDuration"/>
+
+  <xs:element name="calculateDurationResponse" nillable="true" type="tns:calculateDurationResponse"/>
+
+  <xs:element name="calculateEmi" nillable="true" type="tns:calculateEmi"/>
+
+  <xs:element name="calculateEmiResponse" nillable="true" type="tns:calculateEmiResponse"/>
+
+  <xs:element name="calculateInterestRate" nillable="true" type="tns:calculateInterestRate"/>
+
+  <xs:element name="calculateInterestRateFromEmi" nillable="true" type="tns:calculateInterestRateFromEmi"/>
+
+  <xs:element name="calculateInterestRateFromEmiResponse" nillable="true" type="tns:calculateInterestRateFromEmiResponse"/>
+
+  <xs:element name="calculateInterestRateResponse" nillable="true" type="tns:calculateInterestRateResponse"/>
+
+  <xs:element name="calculatePrincipalAmount" nillable="true" type="tns:calculatePrincipalAmount"/>
+
+  <xs:element name="calculatePrincipalAmountResponse" nillable="true" type="tns:calculatePrincipalAmountResponse"/>
+
+  <xs:complexType name="calculateDuration">
+    <xs:sequence>
+      <xs:element name="interestRate" type="tns:interestRate" minOccurs="0"/>
+      <xs:element name="principalAmount" type="xs:double"/>
+      <xs:element name="totalInterestAmountPayable" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="interestRate">
+    <xs:sequence>
+      <xs:element name="rate" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateDurationResponse">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="durationPeriod">
+    <xs:sequence>
+      <xs:element name="duration" type="xs:int"/>
+      <xs:element name="timePeriod" type="tns:timePeriod" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LoanCalculatorFault">
+    <xs:sequence>
+      <xs:element name="faultInfo" type="tns:loanCalculatorFaultBean" minOccurs="0"/>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="loanCalculatorFaultBean">
+    <xs:sequence>
+      <xs:element name="faultCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="faultString" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateInterestRate">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+      <xs:element name="principalAmount" type="xs:double"/>
+      <xs:element name="totalInterestAmountPayable" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateInterestRateResponse">
+    <xs:sequence>
+      <xs:element name="interestRate" type="tns:interestRate" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateInterestRateFromEmi">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+      <xs:element name="emi" type="tns:emi" minOccurs="0"/>
+      <xs:element name="principalAmount" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="emi">
+    <xs:sequence>
+      <xs:element name="emi" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateInterestRateFromEmiResponse">
+    <xs:sequence>
+      <xs:element name="interestRate" type="tns:interestRate" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculatePrincipalAmount">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+      <xs:element name="interestRate" type="tns:interestRate" minOccurs="0"/>
+      <xs:element name="totalInterestAmountPayable" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculatePrincipalAmountResponse">
+    <xs:sequence>
+      <xs:element name="principalAmount" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateEmi">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+      <xs:element name="loanType" type="tns:loanType" minOccurs="0"/>
+      <xs:element name="principalAmount" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="calculateEmiResponse">
+    <xs:sequence>
+      <xs:element name="emiData" type="tns:emiData" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="emiData">
+    <xs:sequence>
+      <xs:element name="durationPeriod" type="tns:durationPeriod" minOccurs="0"/>
+      <xs:element name="emi" type="tns:emi" minOccurs="0"/>
+      <xs:element name="interestRate" type="tns:interestRate" minOccurs="0"/>
+      <xs:element name="loanAmount" type="xs:double"/>
+      <xs:element name="loanType" type="tns:loanType" minOccurs="0"/>
+      <xs:element name="totalInterestAmount" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="timePeriod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Month"/>
+      <xs:enumeration value="Year"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="loanType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Housing"/>
+      <xs:enumeration value="Personal"/>
+      <xs:enumeration value="Education"/>
+      <xs:enumeration value="Property"/>
+      <xs:enumeration value="TwoWheeler"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

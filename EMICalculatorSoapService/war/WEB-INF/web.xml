@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+<!-- http servlet which act as the entry point controller for this google application-->  
+	<servlet>
+        <servlet-name>LoanCalculatorServlet</servlet-name>
+        <servlet-class>com.sbr.soap.services.loan.servlets.LoanCalculatorServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoanCalculatorServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <listener>
+        <listener-class>
+            com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>    
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+    
+   <!-- soap servlet which is being responsible for providing the soap services/wsdl --> 
+    <servlet>
+        <servlet-name>LoanCalculatorService</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoanCalculatorService</servlet-name>
+        <url-pattern>/service</url-pattern>
+    </servlet-mapping>
+    
+    <!-- System service servlet, not sure the purpose of it, but it seems that the google app required this servlet -->    
+ 	<servlet>
+  		<servlet-name>SystemServiceServlet</servlet-name>
+  			<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+  			<init-param>
+   			<param-name>services</param-name>
+   			<param-value/>
+  			</init-param>
+ 	</servlet> 		
+ 	<servlet-mapping>
+  		<servlet-name>SystemServiceServlet</servlet-name>
+  		<url-pattern>/_ah/spi/*</url-pattern>
+ 	</servlet-mapping>
+</web-app>
