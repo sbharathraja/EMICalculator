@@ -1,0 +1,1 @@
+This is an Android application project which would utilize the loan calculator service deployed in google app-engine.

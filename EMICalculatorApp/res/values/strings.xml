@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EMICalculatorApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="loan_amount">Loan Amount </string>
+    <string name="loan_type">Loan Type </string>
+    <string name="loan_duration">Duration Periods </string>
+    <string name="button_submit">Submit</string>
+    <string name="title_activity_results">ResultsActivity</string>
+    <string name="result_principal_amount">Principal Amount : </string>
+    <string name="result_interest_amount">Total Interest Amount : </string>
+    <string name="result_interest_rate">Interest Rate : </string>
+    <string name="result_emi_amount">Emi : </string>
+    <string name="emi_calculation_in_progress">Emi Calculation is in progress.</string>
+    <string name="emi_calculation_service_failed">Failed to invoke the webservice.</string>
+
+</resources>
